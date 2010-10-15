@@ -16,9 +16,9 @@ module ActiveRecord::EngineSpec
       arguments[1][:options] = "" unless arguments[1][:options]
 
       if ActiveRecord::EngineSpec.force
-        arguments[1][:options].sub!(/(^| )engine *= *[a-z_\-]+/i, "")
+        arguments[1][:options].sub!(/(^| )engine *= *[a-z0-9_\-]+/i, "")
         arguments[1][:options] += " engine=#{ActiveRecord::EngineSpec.engine}"
-      elsif /(^| )engine *= *[a-z_\-]+/i !~ arguments[1][:options]
+      elsif /(^| )engine *= *[a-z0-9_\-]+/i !~ arguments[1][:options]
         arguments[1][:options] += " engine=#{ActiveRecord::EngineSpec.engine}"
       end
 
