@@ -7,19 +7,6 @@
 The storage engine used is specified.
 Put a config file at config/initializers directory.
 
-== CONFIG EXAMPLE:
-* Use MyISAM in default.
-  require 'active_record/engine_spec'
-
-  ActiveRecord::EngineSpec.engine = :MyISAM
-  ActiveRecord::EngineSpec.force = false
-
-* Always use NDB Cluster.
-  require 'active_record/engine_spec'
-
-  ActiveRecord::EngineSpec.engine = :ndbcluster
-  ActiveRecord::EngineSpec.force = true
-
 == DEPENDENCY:
 
 * Ruby 1.8.5
@@ -40,6 +27,21 @@ Put a config file at config/initializers directory.
 == INSTALL:
 
   ./script/plugin install git://github.com/eth0jp/activerecord-engine_spec.git
+
+== CONFIG EXAMPLE:
+* Use MyISAM in default.
+
+  require 'active_record/engine_spec'
+
+  ActiveRecord::EngineSpec.engine = :MyISAM
+  ActiveRecord::EngineSpec.force = false
+
+* Always use NDB Cluster.
+
+  require 'active_record/engine_spec'
+
+  ActiveRecord::EngineSpec.engine = :ndbcluster
+  ActiveRecord::EngineSpec.force = true
 
 == EXECUTION RESULT:
 
