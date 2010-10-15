@@ -9,6 +9,9 @@ Put a config file at config/initializers directory.
 
 == DEPENDENCY:
 
+* ActiveRecord
+
+Tested version:
 * Ruby 1.8.5
 * ActiveRecord 2.8.5
 
