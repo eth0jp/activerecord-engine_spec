@@ -29,14 +29,14 @@ Put a config file at config/initializers directory.
   ./script/plugin install git://github.com/eth0jp/activerecord-engine_spec.git
 
 == CONFIG EXAMPLE:
-* Use MyISAM in default.
+Use MyISAM in default.
 
   require 'active_record/engine_spec'
 
   ActiveRecord::EngineSpec.engine = :MyISAM
   ActiveRecord::EngineSpec.force = false
 
-* Always use NDB Cluster.
+Always use NDB Cluster.
 
   require 'active_record/engine_spec'
 
