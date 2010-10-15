@@ -1,0 +1,12 @@
+History.txt
+Manifest.txt
+PostInstall.txt
+README.rdoc
+Rakefile
+lib/activerecord-engine_spec.rb
+lib/active_record/engine_spec.rb
+script/console
+script/destroy
+script/generate
+test/test_activerecord-engine_spec.rb
+test/test_helper.rb
