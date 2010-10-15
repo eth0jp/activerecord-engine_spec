@@ -2,7 +2,7 @@ require 'active_record'
 require 'active_record/migration'
 
 module ActiveRecord::EngineSpec
-  VERSION = '0.0.1'
+  VERSION = '0.0.2'
 
   @@engine = :InnoDB
   @@force = false
@@ -12,14 +12,19 @@ module ActiveRecord::EngineSpec
 
   module ClassMethods
     def create_table(*arguments, &block)
-      arguments[1] = {} unless arguments[1]
-      arguments[1][:options] = "" unless arguments[1][:options]
+      begin
+        if ActiveRecord::Base.connection.adapter_name == "MySQL"
+          arguments[1] = {} unless arguments[1]
+          arguments[1][:options] = "" unless arguments[1][:options]
 
-      if ActiveRecord::EngineSpec.force
-        arguments[1][:options].sub!(/(^| )engine *= *[a-z0-9_\-]+/i, "")
-        arguments[1][:options] += " engine=#{ActiveRecord::EngineSpec.engine}"
-      elsif /(^| )engine *= *[a-z0-9_\-]+/i !~ arguments[1][:options]
-        arguments[1][:options] += " engine=#{ActiveRecord::EngineSpec.engine}"
+          if ActiveRecord::EngineSpec.force
+            arguments[1][:options].sub!(/(^| )engine *= *[a-z0-9_\-]+/i, "")
+            arguments[1][:options] += " engine=#{ActiveRecord::EngineSpec.engine}"
+          elsif /(^| )engine *= *[a-z0-9_\-]+/i !~ arguments[1][:options]
+            arguments[1][:options] += " engine=#{ActiveRecord::EngineSpec.engine}"
+          end
+        end
+      rescue
       end
 
       method_missing(:create_table, *arguments, &block)
