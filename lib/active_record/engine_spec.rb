@@ -2,7 +2,7 @@ require 'active_record'
 require 'active_record/migration'
 
 module ActiveRecord::EngineSpec
-  VERSION = '0.0.2'
+  VERSION = '0.0.3'
 
   @@engine = :InnoDB
   @@force = false
@@ -13,7 +13,7 @@ module ActiveRecord::EngineSpec
   module ClassMethods
     def create_table(*arguments, &block)
       begin
-        if ActiveRecord::Base.connection.adapter_name == "MySQL"
+        if ActiveRecord::Base.connection.adapter_name.downcase.index("mysql")
           arguments[1] = {} unless arguments[1]
           arguments[1][:options] = "" unless arguments[1][:options]
 
